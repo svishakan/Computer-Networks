@@ -20,14 +20,16 @@ int main(int argc, char **argv){
 	bzero(&server_address, sizeof(server_address));	//Erases the data pointed to in the server_address by writing 0s
 	
 	server_address.sin_family = AF_INET;			//Use the Internet address family, AF_INET : IPv4 Protocol
-	server_address.sin_addr.s_addr = 115.97.100.118;	//IP Address
-	server_address.sin_port = htons(7228);			//Port Number; htons: host byte order -> network byte order, short
+	server_address.sin_addr.s_addr = INADDR_ANY;	//IP Address
+	server_address.sin_port = htons(7229);			//Port Number; htons: host byte order -> network byte order, short
 
 	if(bind(sockfd, (struct sockaddr*)&server_address, sizeof(server_address)) < 0){
 		//Binding the socket to the port with server_address
 		perror("Bind error occurred.\n");
+		exit(1);
 	}
 
+	printf("Waiting for client...\n");
 	listen(sockfd, 2);		//indicates that server will accept a conection. Parameter 2 indicates backlog (max # of active participants that can wait for a connection)
 	len = sizeof(client_address);
 	newfd = accept(sockfd, (struct sockaddr*)&client_address, &len);
@@ -38,8 +40,12 @@ int main(int argc, char **argv){
 	flag = read(newfd, buffer, sizeof(buffer));
 	//Reads on the socket
 
-	printf("Received message is: %s", buffer);
-	printf("\n");
+	printf("\nReceived message is: %s", buffer);
+	printf("\nMessage Sent: %s", buffer);
+	//connect(sockfd, (struct sockaddr*)&client_address, sizeof(client_address));
+	printf("\nMessage Sent: %s", buffer);
+	flag = write(sockfd, buffer, sizeof(buffer));
+	
 
 	close(sockfd);
 	close(newfd);	//Close the sockets
