@@ -40,14 +40,6 @@ int main(int argc, char **argv){
 	return 0;
 }
 
-/*
-OUTPUT:
-
-vishakan@Legion:~/Desktop/$ ./c 192.168.1.4
-
-Enter a message: Hello World!
-
-*/
 
 /*
 socket(int domain, int type, int protocol)

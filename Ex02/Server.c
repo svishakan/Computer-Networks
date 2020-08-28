@@ -40,28 +40,16 @@ int main(int argc, char **argv){
 	flag = read(newfd, buffer, sizeof(buffer));
 	//Reads on the socket
 
-	printf("\nReceived message is: %s", buffer);
-	printf("\nMessage Sent: %s", buffer);
-	//connect(sockfd, (struct sockaddr*)&client_address, sizeof(client_address));
-	printf("\nMessage Sent: %s", buffer);
+	printf("Received message is: %s\n", buffer);
+	printf("Message Sent: %s\n", buffer);
+	
 	flag = write(sockfd, buffer, sizeof(buffer));
 	
-
 	close(sockfd);
 	close(newfd);	//Close the sockets
 
 	return 0;
 }
-
-
-/*
-OUTPUT:
-
-vishakan@Legion:~/Desktop/$ ./s
-
-Received message is: Hello World!
-
-*/
 
 
 /*
