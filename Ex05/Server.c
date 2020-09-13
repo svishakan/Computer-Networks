@@ -38,7 +38,7 @@ int main(int argc, char **argv){
 	while(1){	//server is always up
 		recvfrom(sockfd, &n, sizeof(n), 0, (struct sockaddr*)&cli_addr, &addrlen);
 		cur_time = time(NULL);
-		printf("\nA client sent a request through port %d.\n", PORT);
+		printf("\nClient %d sent a request through port %d.\n", n, PORT);
 		sendto(sockfd, &cur_time, sizeof(cur_time), 0, (struct sockaddr*)&cli_addr, addrlen);
 		printf("Sent current time: %s", ctime(&cur_time));
 	}

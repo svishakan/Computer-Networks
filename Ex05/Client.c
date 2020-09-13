@@ -13,9 +13,10 @@ void printOption(time_t cur_time, int opt);
 int main(int argc, char **argv){
 	time_t cur_time;
 	struct sockaddr_in serv_addr, cli_addr;
-	int sockfd, n = 1, addrlen, opt, cont;
+	int sockfd, n, addrlen, opt, cont;
 
 	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+	n = atoi(argv[1]);
 
 	if(sockfd < 0){
 		perror("Error in opening socket.\n");
