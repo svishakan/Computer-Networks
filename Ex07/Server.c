@@ -9,7 +9,7 @@
 
 int cur_size = 0;
 char server_list[SIZE][100], ip_list[SIZE][50];
-char empty[4] = "NULL";
+char empty[5] = "NULL\0";
 
 int  checkIP(char *ip);
 void allocateIP();
@@ -20,9 +20,8 @@ char *fetchIP(char *req_server);
 int main(int argc, char **argv){
 	struct sockaddr_in server, client;
 	int sockfd, n, addrlen, flag;
-	char *req_server, *req_ip;
-	req_server = (char *)malloc(sizeof(char) * 100);
-	req_ip = (char *)malloc(sizeof(char) * 50);
+	char req_server[100], *req_ip;
+	req_ip = (char*)calloc(50, sizeof(char));
 
 	allocateIP();
 	printTable();
@@ -54,8 +53,9 @@ int main(int argc, char **argv){
 	addrlen = sizeof(client);
 
 	while(1){
-		recvfrom(sockfd, req_server, sizeof(req_server), 0, (struct sockaddr*)&client, &addrlen);
-		printf("Received a request for IP Address of %s from a client.\n", req_server);
+		bzero(req_server, sizeof(req_server));
+		recvfrom(sockfd, &req_server, sizeof(req_server), 0, (struct sockaddr*)&client, &addrlen);
+		printf("\nReceived a request for IP Address of %s from a client.\n", req_server);
 		
 		req_ip = fetchIP(req_server);
 		
@@ -76,7 +76,7 @@ int checkIP(char *ip){
 	int valid = 1, byte;
 	char *ip_copy, *split;
 
-	ip_copy = (char *)malloc(sizeof(char) * 50);
+	ip_copy = (char*)calloc(50, sizeof(char));
 	strcpy(ip_copy, ip);
 	split = strtok(ip_copy, ".");
 
@@ -95,7 +95,7 @@ int checkIP(char *ip){
 void allocateIP(){
 	int i = 0, choice = 1, valid;
 	char *ip;
-	ip = (char *)malloc(sizeof(char) * 50);
+	ip = (char*)calloc(50, sizeof(char));
 
 	printf("\tPress 1 to Allocate IP Address.\n");
 	printf("\tPress 0 to Exit.");
