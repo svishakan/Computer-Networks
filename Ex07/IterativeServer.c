@@ -21,13 +21,13 @@ dns_table *local, *root, *auth;		//local - 1st level, root - 2nd level, auth - 3
 
 char empty[5] = "NULL\0";
 
-int		checkIP(char *ip);
-int		addRecord(dns_table *table, char *server, char *ip);
-void	allocateIP(dns_table *table);
-void	printTable(dns_table *table, char *table_name);
-void	updateTable(dns_table *table);
-void	initTables();
-char	*fetchIP(char *req_server);
+int     checkIP(char *ip);
+int     addRecord(dns_table *table, char *server, char *ip);
+void    allocateIP(dns_table *table);
+void    printTable(dns_table *table, char *table_name);
+void    updateTable(dns_table *table);
+void    initTables();
+char    *fetchIP(char *req_server);
 
 int main(int argc, char **argv){
 	struct sockaddr_in server, client;
