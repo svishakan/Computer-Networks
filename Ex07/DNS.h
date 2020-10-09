@@ -11,7 +11,7 @@
 #define LOCAL_PORT	7200
 #define ROOT_PORT	7300
 #define TLD_PORT	7400
-#define AUTH_PORT   7500
+#define AUTH_PORT   	7500
 
 #define SIZE 30
 
