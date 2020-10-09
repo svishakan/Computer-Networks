@@ -1,11 +1,26 @@
-#include "DNS.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+#define PORT 7228
 
 int main(int argc, char **argv){
-	struct sockaddr_in server;
+	struct sockaddr_in server, client;
 	int sockfd, n, addrlen, flag, choice = 1;
 	char req_server[100], req_ip[50];
 
-	sockfd = setUpConnection(&server, CLI_PORT, 0, "local DNS server");
+	sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+	if(sockfd < 0){
+		perror("Error in creating socket.\n");
+	}
+
+	bzero(&server, sizeof(server));
+	server.sin_family = AF_INET;
+	server.sin_addr.s_addr = INADDR_ANY;
+	server.sin_port = htons(PORT);
 
 	addrlen = sizeof(server);
 
