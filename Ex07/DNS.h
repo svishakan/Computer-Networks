@@ -7,11 +7,11 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 
-#define CLI_PORT	7100
-#define LOCAL_PORT	7200
-#define ROOT_PORT	7300
-#define TLD_PORT	7400
-#define AUTH_PORT	7500
+#define CLI_PORT    7100
+#define LOCAL_PORT  7200
+#define ROOT_PORT   7300
+#define TLD_PORT    7400
+#define AUTH_PORT   7500
 
 
 #define SIZE 30
