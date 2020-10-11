@@ -13,6 +13,7 @@
 #define TLD_PORT	7400
 #define AUTH_PORT	7500
 
+
 #define SIZE 30
 
 struct DNS_Table{ //struct for the DNS table
