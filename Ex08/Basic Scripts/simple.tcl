@@ -65,14 +65,14 @@ puts [$cbr0 set interval_]
 $ns at 3.0 "finish"
 
 proc finish {} {
-	global ns f nf
-	$ns flush-trace
-	close $f
-	close $nf
+    global ns f nf
+    $ns flush-trace
+    close $f
+    close $nf
 
-	puts "running nam..."
-	exec nam out.nam &
-	exit 0
+    puts "running nam..."
+    exec nam out.nam &
+    exit 0
 }
 
 $ns run

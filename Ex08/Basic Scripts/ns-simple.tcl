@@ -1,7 +1,7 @@
 #Simple NS-2 Program
 
 #--------------------------------------------------------------------
-	
+    
 #Network consists of 4 nodes n0, n1, n2, n3.
 
 #Duplex links between n0 & n1, n1 & n2

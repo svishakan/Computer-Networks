@@ -13,15 +13,15 @@ $ns namtrace-all $nf
 
 #Define a 'finish' procedure
 proc finish {} {
-	global ns nf
-	$ns flush-trace
+    global ns nf
+    $ns flush-trace
 
-	#Close the NAM trace file
-	close $nf
-	
-	#Execute NAM on the trace file
-	exec nam out_Perf.nam &
-	exit 0
+    #Close the NAM trace file
+    close $nf
+    
+    #Execute NAM on the trace file
+    exec nam out_Perf.nam &
+    exit 0
 }
 
 #Create the six nodes
