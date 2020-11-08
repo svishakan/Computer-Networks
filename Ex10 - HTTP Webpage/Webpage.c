@@ -26,7 +26,13 @@ int main(int argc, char *argv[]){
 	sockfd = connectToHost(argv[1], atoi(argv[2]));
 	
 	//sending a GET request to the domain to download the webpage
-	send(sockfd, "GET / \r\n\r\n", strlen("GET /\r\n\r\n"), 0);
+	
+	//GET request to retrieve full webpage information
+	//send(sockfd, "GET / \r\n\r\n", strlen("GET /\r\n\r\n"), 0);
+	//\r\n\r\n used to denote carriage-return & newlines
+	
+	//HEAD request (same as GET) to get status line & header section only
+	send(sockfd, "HEAD / HTTP/1.0\r\n\r\n", 23, 0);
 	bzero(buffer, 1024);
 
 	while(recv(sockfd, buffer, 1023, 0) != 0){
