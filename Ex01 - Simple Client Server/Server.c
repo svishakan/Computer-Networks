@@ -20,7 +20,7 @@ int main(int argc, char **argv){
 	bzero(&server_address, sizeof(server_address));	//Erases the data pointed to in the server_address by writing 0s
 	
 	server_address.sin_family = AF_INET;			//Use the Internet address family, AF_INET : IPv4 Protocol
-	server_address.sin_addr.s_addr = 115.97.100.118;	//IP Address
+	server_address.sin_addr.s_addr = INADDR_ANY;	//IP Address
 	server_address.sin_port = htons(7228);			//Port Number; htons: host byte order -> network byte order, short
 
 	if(bind(sockfd, (struct sockaddr*)&server_address, sizeof(server_address)) < 0){
