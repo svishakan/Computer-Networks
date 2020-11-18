@@ -24,25 +24,26 @@ if __name__ == "__main__":
 	
 	protocols = ["tcp", "cbr", "rtProtoDV"]
 	
-	sent, rcvd, dropped = 0, 0, 0
-	start, end = 0, 0
-	
 	for protocol in protocols:
+		
+		sent, rcvd, dropped = 0, 0, 0
+		start, end = 0, 0
+		
 		for line in lines:
 			"Format: 0-event 1-time 2-start_node 3-end_node 4-protocol 5-pkt_size"
 			param = line.split()
 		
-			if param[4] == protocols[0] and (param[0] == "+" or param[0] == "s"):
+			if param[4] == protocol and (param[0] == "+" or param[0] == "s"):
 			 	if float(param[1]) <= start:
 			 		start = float(param[1])
 			 	sent += 1
 		
-			if param[4] == protocols[0] and param[0] == "r":
+			if param[4] == protocol and param[0] == "r":
 				if float(param[1]) >= end:
 					end = float(param[1])
 				rcvd += 1
 		
-			if param[4] == protocols[0] and param[0] == "d":
+			if param[4] == protocol and param[0] == "d":
 				dropped += 1
 			
 		print_stats(protocol, sent, rcvd, dropped, start, end)
