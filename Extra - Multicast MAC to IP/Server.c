@@ -77,59 +77,59 @@ int main(void){
 
 
 int checkIP(char *ip){
-	//Checks if a given IP address is a valid ssmulticast address
+    //Checks if a given IP address is a valid ssmulticast address
 
-	int valid = 1, byte, flag = 0;
-	char *ip_copy, *split;
+    int valid = 1, byte, flag = 0;
+    char *ip_copy, *split;
 
-	ip_copy = (char *)calloc(100, sizeof(char));
-	strcpy(ip_copy, ip);
-	split = strtok(ip_copy, ".");
+    ip_copy = (char *)calloc(100, sizeof(char));
+    strcpy(ip_copy, ip);
+    split = strtok(ip_copy, ".");
 
-	while(split){ //split pointer points to each "byte" iteratively
-		byte = atoi(split);
+    while(split){ //split pointer points to each "byte" iteratively
+        byte = atoi(split);
         if(flag == 0){
             //First byte should be between 239 & 224
             //Class D address
             if (byte > 239 || byte < 224){
-			    return 0;
+                return 0;
             }
             else{
                 //Valid multicast
                 flag = 1;
             }
-		}
+        }
 
-		if (byte < 0 || byte > 255){
+        if (byte < 0 || byte > 255){
             //Other bytes must be between 0 and 255
-			return 0;
-		}
+            return 0;
+        }
 
-		split = strtok(NULL, ".");
-	}
+        split = strtok(NULL, ".");
+    }
 
-	return 1;
+    return 1;
 }
 
 char *convertToMAC(char *ip){
-	//Converts the given IP address to a MAC address
-	
-	//In the Ethernet world, a multicast MAC address is distinguished by a binary '1' 
-	//in the least significant bit of the first byte. 
-	//For IP multicast specifically, the Ethernet prefix "01-00-5e" is reserved.
+    //Converts the given IP address to a MAC address
+    
+    //In the Ethernet world, a multicast MAC address is distinguished by a binary '1' 
+    //in the least significant bit of the first byte. 
+    //For IP multicast specifically, the Ethernet prefix "01-00-5e" is reserved.
 
 
-	int bit[4];
-	char *mac;
-	mac = (char *)malloc(sizeof(char) * 100);
-	
-	sscanf(ip, "%d.%d.%d.%d", &bit[0], &bit[1], &bit[2], &bit[3]);
-	
-	bit[1] = (bit[1] & (~(1 << 7)));	//Clear the MSB(8th bit) of bit[1]
-	
-	sprintf(mac, "01:00:5e:%02x:%02x:%02x", bit[1], bit[2], bit[3]);
-	
-	return mac;
+    int bit[4];
+    char *mac;
+    mac = (char *)malloc(sizeof(char) * 100);
+    
+    sscanf(ip, "%d.%d.%d.%d", &bit[0], &bit[1], &bit[2], &bit[3]);
+    
+    bit[1] = (bit[1] & (~(1 << 7)));	//Clear the MSB(8th bit) of bit[1]
+    
+    sprintf(mac, "01:00:5e:%02x:%02x:%02x", bit[1], bit[2], bit[3]);
+    
+    return mac;
 }
 
 

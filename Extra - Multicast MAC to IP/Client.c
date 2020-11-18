@@ -20,7 +20,7 @@ struct packet{
 typedef struct packet PKT;
 
 int main(void){
-	int sockfd, newfd, n, len, flag;
+    int sockfd, newfd, n, len, flag;
     char buff[1024], *mac;
     struct sockaddr_in server, client;
     PKT pkt;
@@ -40,19 +40,19 @@ int main(void){
     len = sizeof(server);
     
     while(1){
-    	printf("\nEnter the Multicast IP Address: ");
-    	scanf("%s", pkt.ip);
-    	sendto(sockfd, &pkt, sizeof(pkt), 0, (struct sockaddr *)&server, len);
-    	recvfrom(sockfd, &pkt, sizeof(pkt), 0, (struct sockaddr *)&server, &len);
-    	if(pkt.valid == 0){
-    		printf("\nThe IP address %s was not a valid multicast address.\n", pkt.ip);
-    	}
-    	else{
-    		printf("\nMulticast MAC address: %s\n", pkt.mac);
-    	}
-    	
+        printf("\nEnter the Multicast IP Address: ");
+        scanf("%s", pkt.ip);
+        sendto(sockfd, &pkt, sizeof(pkt), 0, (struct sockaddr *)&server, len);
+        recvfrom(sockfd, &pkt, sizeof(pkt), 0, (struct sockaddr *)&server, &len);
+        if(pkt.valid == 0){
+            printf("\nThe IP address %s was not a valid multicast address.\n", pkt.ip);
+        }
+        else{
+            printf("\nMulticast MAC address: %s\n", pkt.mac);
+        }
+        
     }
-	
+    
 
     return 0;
 }
