@@ -1,0 +1,8 @@
+Server:		You are connected to the server.
+Client:		Don't leave me!
+Server:		We won't!
+Client:		192.168.1.1
+Server:		You entered a valid IP address!
+Client:		Thanks
+Server:		Sure
+Client:		Bye
